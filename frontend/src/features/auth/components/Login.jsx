@@ -95,6 +95,19 @@ export const Login = () => {
                       <LoadingButton fullWidth  sx={{height:'2.5rem'}} loading={status==='pending'} type='submit' variant='contained'>Login</LoadingButton>
                     </motion.div>
 
+                    <motion.div whileHover={{scale:1.020}} whileTap={{scale:1}}>
+                      <LoadingButton 
+                        fullWidth 
+                        sx={{height:'2.5rem', mt: 1}} 
+                        variant='outlined' 
+                        onClick={() => {
+                          dispatch(loginAsync({ email: 'guest@mernshop.com', password: 'Guest@123' }))
+                        }}
+                      >
+                        Continue as Guest
+                      </LoadingButton>
+                    </motion.div>
+
                     <Stack flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'} flexWrap={'wrap-reverse'} >
 
                       <MotionConfig whileHover={{x:2}} whileTap={{scale:1.050}}>

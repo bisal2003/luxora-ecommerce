@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { clearSelectedProduct, fetchProductByIdAsync, resetProductFetchStatus, selectProductFetchStatus, selectSelectedProduct } from '../ProductSlice'
-import { Box,Checkbox,Rating, Stack,Typography, useMediaQuery,Button,Paper} from '@mui/material'
+import { Box,Checkbox,Rating, Stack,Typography, useMediaQuery,Button} from '@mui/material'
 import { addToCartAsync, resetCartItemAddStatus, selectCartItemAddStatus, selectCartItems } from '../../cart/CartSlice'
 import { selectLoggedInUser } from '../../auth/AuthSlice'
+import { selectUserInfo } from '../../user/UserSlice'
 import { fetchReviewsByProductIdAsync,resetReviewFetchStatus,selectReviewFetchStatus,selectReviews,} from '../../review/ReviewSlice'
 import { Reviews } from '../../review/components/Reviews'
 import {toast} from 'react-toastify'
@@ -33,6 +34,7 @@ export const ProductDetails = () => {
     const {id}=useParams()
     const product=useSelector(selectSelectedProduct)
     const loggedInUser=useSelector(selectLoggedInUser)
+    const userInfo=useSelector(selectUserInfo)
     const dispatch=useDispatch()
     const cartItems=useSelector(selectCartItems)
     const cartItemAddStatus=useSelector(selectCartItemAddStatus)
@@ -80,7 +82,7 @@ export const ProductDetails = () => {
             dispatch(fetchProductByIdAsync(id))
             dispatch(fetchReviewsByProductIdAsync(id))
         }
-    },[id])
+    },[id, dispatch])
 
     useEffect(()=>{
 
@@ -132,9 +134,13 @@ export const ProductDetails = () => {
             dispatch(resetWishlistItemAddStatus())
             dispatch(resetCartItemAddStatus())
         }
-    },[])
+    },[dispatch])
 
     const handleAddToCart=()=>{
+        if(userInfo?.isGuest){
+            toast.info("Please login to add items to cart")
+            return
+        }
         const item={user:loggedInUser._id,product:id,quantity}
         dispatch(addToCartAsync(item))
         setQuantity(1)
@@ -157,6 +163,10 @@ export const ProductDetails = () => {
     }
 
     const handleAddRemoveFromWishlist=(e)=>{
+        if(userInfo?.isGuest){
+            toast.info("Please login to add items to wishlist")
+            return
+        }
         if(e.target.checked){
             const data={user:loggedInUser?._id,product:id}
             dispatch(createWishlistItemAsync(data))
@@ -206,7 +216,7 @@ export const ProductDetails = () => {
                             {
                                 product && product.images.map((image,index)=>(
                                     <motion.div  whileHover={{scale:1.1}} whileTap={{scale:1}} style={{width:"200px",cursor:"pointer"}} onClick={()=>setSelectedImageIndex(index)}>
-                                        <img style={{width:"100%",objectFit:"contain"}} src={image} alt={`${product.title} image`} />
+                                        <img style={{width:"100%",objectFit:"contain"}} src={image} alt={product.title} />
                                     </motion.div>
                                 ))
                             }
@@ -217,7 +227,7 @@ export const ProductDetails = () => {
                             {
                                 is1420?
                                 <Stack width={is480?"100%":is990?'400px':"500px"} >
-                                    <AutoPlaySwipeableViews width={'100%'} height={'100%'} axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'} index={activeStep} onChangeIndex={handleStepChange} enableMouseEvents >
+                                    <AutoPlaySwipeableViews style={{touchAction: 'pan-y'}} width={'100%'} height={'100%'} axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'} index={activeStep} onChangeIndex={handleStepChange} enableMouseEvents >
                                         {
                                         product?.images.map((image,index) => (
                                         <div key={index} style={{width:"100%",height:'100%'}}>
@@ -237,7 +247,7 @@ export const ProductDetails = () => {
                                 </Stack>
                                 :
                                 <div style={{width:"100%"}}>
-                                    <img style={{width:"100%",objectFit:"contain",aspectRatio:1/1}} src={product?.images[selectedImageIndex]} alt={`${product?.title} image`} />
+                                    <img style={{width:"100%",objectFit:"contain",aspectRatio:1/1}} src={product?.images[selectedImageIndex]} alt={product?.title} />
                                 </div>
                             }
                         </Stack>
@@ -329,7 +339,7 @@ export const ProductDetails = () => {
 
                                 {/* wishlist */}
                                 <motion.div style={{border:"1px solid grayText",borderRadius:"4px",display:"flex",justifyContent:"center",alignItems:"center"}}>
-                                    <Checkbox checked={isProductAlreadyinWishlist} onChange={(e)=>handleAddRemoveFromWishlist(e)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{color:'red'}} />} />
+                                    <Checkbox checked={isProductAlreadyinWishlist} onChange={(e)=>handleAddRemoveFromWishlist(e)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{color:'red'}} />} disabled={userInfo?.isGuest} />
                                 </motion.div>
 
 

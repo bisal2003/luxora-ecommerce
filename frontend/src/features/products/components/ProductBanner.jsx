@@ -13,21 +13,13 @@ export const ProductBanner = ({images}) => {
     const [activeStep, setActiveStep] = useState(0);
     const maxSteps = images.length;
 
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-
     const handleStepChange = (step) => {
         setActiveStep(step);
     };
 
   return (
     <>
-    <AutoPlaySwipeableViews style={{overflow:"hidden"}} width={'100%'} height={'100%'} axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'} index={activeStep} onChangeIndex={handleStepChange} enableMouseEvents >
+    <AutoPlaySwipeableViews style={{overflow:"hidden", touchAction: 'pan-y'}} width={'100%'} height={'100%'} axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'} index={activeStep} onChangeIndex={handleStepChange} enableMouseEvents >
         {
         images.map((image,index) => (
         <div key={index} style={{width:"100%",height:'100%'}}>

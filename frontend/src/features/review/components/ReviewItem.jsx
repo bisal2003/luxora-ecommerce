@@ -1,17 +1,18 @@
 import {Button, IconButton, Menu, MenuItem, Paper, Rating, Stack, TextField, Typography, useMediaQuery, useTheme } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectLoggedInUser } from '../../auth/AuthSlice';
-import {deleteReviewByIdAsync, selectReviewStatus, updateReviewByIdAsync} from '../ReviewSlice'
+import {deleteReviewByIdAsync, updateReviewByIdAsync} from '../ReviewSlice'
 import { useForm } from "react-hook-form"
 import {LoadingButton} from '@mui/lab'
+import { motion } from 'framer-motion'
 
 export const ReviewItem = ({id,username,userid,comment,rating,createdAt}) => {
 
   const dispatch=useDispatch()
   const loggedInUser=useSelector(selectLoggedInUser)
-  const {register,handleSubmit,formState: { errors }} = useForm()
+  const {register,handleSubmit} = useForm()
   const [edit,setEdit]=useState(false)
   const [editRating,setEditRating]=useState(rating)
   const theme=useTheme()
@@ -48,9 +49,9 @@ export const ReviewItem = ({id,username,userid,comment,rating,createdAt}) => {
             <Stack flexDirection={'row'} columnGap={2}>
                 <Stack> 
                         <Typography variant='h6' fontSize={"1.1rem"} fontWeight={500}>{username}</Typography>
-                        <motiondiv>
+                        <motion.div>
                             <Rating size={edit?is480?'medium':'large':"small"} readOnly={!edit} onChange={(e)=>setEditRating(e.target.value)} value={edit?editRating:rating}/>
-                        </motiondiv>
+                        </motion.div>
                 </Stack>
             </Stack>
 

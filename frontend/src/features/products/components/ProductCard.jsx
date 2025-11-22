@@ -1,5 +1,5 @@
-import { FormHelperText, Paper, Stack, Typography, useMediaQuery, useTheme} from '@mui/material'
-import React, { useState } from 'react'
+import { FormHelperText, Paper, Stack, Typography, useMediaQuery, useTheme, Tooltip} from '@mui/material'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
@@ -8,7 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectWishlistItems } from '../../wishlist/WishlistSlice';
 import { selectLoggedInUser } from '../../auth/AuthSlice';
 import { addToCartAsync,selectCartItems } from '../../cart/CartSlice';
+import { selectUserInfo } from '../../user/UserSlice';
 import {motion} from 'framer-motion'
+import {toast} from 'react-toastify'
 
 export const ProductCard = ({id,title,price,thumbnail,brand,stockQuantity,handleAddRemoveFromWishlist,isWishlistCard,isAdminCard}) => {
 
@@ -16,6 +18,7 @@ export const ProductCard = ({id,title,price,thumbnail,brand,stockQuantity,handle
     const navigate=useNavigate()
     const wishlistItems=useSelector(selectWishlistItems)
     const loggedInUser=useSelector(selectLoggedInUser)
+    const userInfo=useSelector(selectUserInfo)
     const cartItems=useSelector(selectCartItems)
     const dispatch=useDispatch()
     let isProductAlreadyinWishlist=-1
@@ -36,8 +39,21 @@ export const ProductCard = ({id,title,price,thumbnail,brand,stockQuantity,handle
 
     const handleAddToCart=async(e)=>{
         e.stopPropagation()
+        if(userInfo?.isGuest){
+            toast.info("Please login to add items to cart")
+            return
+        }
         const data={user:loggedInUser?._id,product:id}
         dispatch(addToCartAsync(data))
+    }
+
+    const handleWishlistClick = (e, id) => {
+        if(userInfo?.isGuest){
+            e.stopPropagation()
+            toast.info("Please login to add items to wishlist")
+            return
+        }
+        handleAddRemoveFromWishlist(e, id)
     }
 
 
@@ -51,7 +67,7 @@ export const ProductCard = ({id,title,price,thumbnail,brand,stockQuantity,handle
 
         {/* image display */}
         <Stack>
-            <img width={'100%'} style={{aspectRatio:1/1,objectFit:"contain"}} height={'100%'}  src={thumbnail} alt={`${title} photo unavailable`} />
+            <img width={'100%'} style={{aspectRatio:1/1,objectFit:"contain"}} height={'100%'}  src={thumbnail} alt={`${title}`} />
         </Stack>
 
         {/* lower section */}
@@ -63,7 +79,7 @@ export const ProductCard = ({id,title,price,thumbnail,brand,stockQuantity,handle
                     {
                     !isAdminCard && 
                     <motion.div whileHover={{scale:1.3,y:-10,zIndex:100}} whileTap={{scale:1}} transition={{duration:.4,type:"spring"}}>
-                        <Checkbox onClick={(e)=>e.stopPropagation()} checked={isProductAlreadyinWishlist} onChange={(e)=>handleAddRemoveFromWishlist(e,id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{color:'red'}} />} />
+                        <Checkbox onClick={(e)=>e.stopPropagation()} checked={isProductAlreadyinWishlist} onChange={(e)=>handleWishlistClick(e,id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{color:'red'}} />} disabled={userInfo?.isGuest} />
                     </motion.div>
                     }
                 </Stack>

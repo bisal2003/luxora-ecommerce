@@ -7,7 +7,7 @@ const users = [
     email: "demo@gmail.com",
     password:'$2a$10$GH8p5cAsGFEdYsLaSfTQ3e1eUs7KbLmVBltjbX4DDCj2eyO2KW/Ze',
     isVerified: true,
-    isAdmin: false,
+    isAdmin: true,
     __v: 0,
   },
   {
@@ -17,6 +17,16 @@ const users = [
     password: '$2a$10$tosjkprqtomSah0VJNyKi.TIv1JU65pl1i1IJ6wUttjYw.ENF99jG',
     isVerified: true,
     isAdmin: false,
+    __v: 0,
+  },
+  {
+    _id: "65c2526fdcd9253acfbaa732",
+    name: "Guest User",
+    email: "guest@mernshop.com",
+    password: '$2a$10$UQXCqy4uEUCAfZqnGF0Ex.ag4xrW7CIqrtkrnjEr6t8lmXQLPJ8EO',
+    isVerified: true,
+    isAdmin: false,
+    isGuest: true,
     __v: 0,
   },
 ];

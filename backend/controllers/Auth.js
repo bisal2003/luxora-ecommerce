@@ -140,8 +140,20 @@ exports.resendOtp=async(req,res)=>{
 
         res.status(201).json({'message':"OTP sent"})
     } catch (error) {
-        res.status(500).json({'message':"Some error occured while resending otp, please try again later"})
-        console.log(error);
+        console.error('Error in resendOtp:', error);
+        
+        // Provide more specific error messages
+        if (error.message.includes('Failed to send email')) {
+            return res.status(500).json({
+                'message': "Failed to send OTP email. Please check email configuration.",
+                'error': error.message
+            });
+        }
+        
+        res.status(500).json({
+            'message': "Some error occured while resending otp, please try again later",
+            'error': error.message
+        });
     }
 }
 

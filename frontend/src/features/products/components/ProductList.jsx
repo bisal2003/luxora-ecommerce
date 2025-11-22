@@ -109,7 +109,7 @@ export const ProductList = () => {
 
         dispatch(fetchProductsAsync(finalFilters))
         
-    },[filters,page,sort])
+    },[filters,page,sort,dispatch,loggedInUser?.isAdmin])
 
 
     const handleAddRemoveFromWishlist=(e,productId)=>{
@@ -166,7 +166,7 @@ export const ProductList = () => {
             dispatch(resetWishlistItemDeleteStatus())
             dispatch(resetCartItemAddStatus())
         }
-    },[])
+    },[dispatch])
 
 
     const handleFilterClose=()=>{

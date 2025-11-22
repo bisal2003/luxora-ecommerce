@@ -47,15 +47,20 @@ export const Navbar=({isProductList=false})=> {
     dispatch(toggleFilters())
   }
 
-  const settings = [
-    {name:"Home",to:"/"},
-    {name:'Profile',to:loggedInUser?.isAdmin?"/admin/profile":"/profile"},
-    {name:loggedInUser?.isAdmin?'Orders':'My orders',to:loggedInUser?.isAdmin?"/admin/orders":"/orders"},
-    {name:'Logout',to:"/logout"},
-  ];
+  const settings = userInfo?.isGuest 
+    ? [
+        {name:"Home",to:"/"},
+        {name:'Logout',to:"/logout"},
+      ]
+    : [
+        {name:"Home",to:"/"},
+        {name:'Profile',to:loggedInUser?.isAdmin?"/admin/profile":"/profile"},
+        {name:loggedInUser?.isAdmin?'Orders':'My orders',to:loggedInUser?.isAdmin?"/admin/orders":"/orders"},
+        {name:'Logout',to:"/logout"},
+      ];
 
   return (
-    <AppBar position="sticky" sx={{backgroundColor:"white",boxShadow:"none",color:"text.primary"}}>
+    <AppBar position="sticky" sx={{backgroundColor:"background.paper",boxShadow:"0 1px 3px 0 rgba(0, 0, 0, 0.1)",color:"text.primary"}}>
         <Toolbar sx={{p:1,height:"4rem",display:"flex",justifyContent:"space-around"}}>
 
           <Typography variant="h6" noWrap component="a" href="/" sx={{ mr: 2, display: { xs: 'none', md: 'flex' },fontWeight: 700, letterSpacing: '.3rem', color: 'inherit', textDecoration: 'none', }}>
@@ -103,11 +108,12 @@ export const Navbar=({isProductList=false})=> {
             </Menu>
             <Typography variant='h6' fontWeight={300}>{is480?`${userInfo?.name.toString().split(" ")[0]}`:`Hey👋, ${userInfo?.name}`}</Typography>
             {loggedInUser.isAdmin && <Button variant='contained'>Admin</Button>}
+            {userInfo?.isGuest && <Chip label="Guest" size="small" color="secondary" />}
             <Stack sx={{flexDirection:"row",columnGap:"1rem",alignItems:"center",justifyContent:"center"}}>
 
             
             {
-            cartItems?.length>0 && 
+            !userInfo?.isGuest && cartItems?.length>0 && 
             <Badge  badgeContent={cartItems.length} color='error'>
               <IconButton onClick={()=>navigate("/cart")}>
                 <ShoppingCartOutlinedIcon />
@@ -116,7 +122,7 @@ export const Navbar=({isProductList=false})=> {
             }
             
             {
-              !loggedInUser?.isAdmin &&
+              !loggedInUser?.isAdmin && !userInfo?.isGuest &&
                   <Stack>
                       <Badge badgeContent={wishlistItems?.length} color='error'>
                           <IconButton component={Link} to={"/wishlist"}><FavoriteBorderIcon /></IconButton>
