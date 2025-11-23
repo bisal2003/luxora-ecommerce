@@ -19,9 +19,15 @@ const { connectToDB } = require("./database/db")
 // server init
 const server=express()
 
-// database connection
-connectToDB()
-
+// Middleware to ensure DB connection before handling requests
+server.use(async (req, res, next) => {
+    try {
+        await connectToDB();
+        next();
+    } catch (error) {
+        res.status(500).json({ message: 'Database connection failed' });
+    }
+});
 
 // middlewares
 server.use(cors({origin:process.env.ORIGIN,credentials:true,exposedHeaders:['X-Total-Count'],methods:['GET','POST','PATCH','DELETE']}))
