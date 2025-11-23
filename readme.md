@@ -1,7 +1,7 @@
 ## LUXORA - Premium E-Commerce Platform
 
 🔗 **Live Demo:** [https://luxora-ecommerce-steel.vercel.app](https://luxora-ecommerce-steel.vercel.app)  
-🔗 **Backend API:** [https://luxora-ecommerce-m4aq.vercel.app](https://luxora-ecommerce-m4aq.vercel.app)
+
 
 **LUXORA** is a premium full-stack e-commerce application built with the MERN stack (MongoDB, Express.js, React, Node.js). Featuring a sophisticated black-gold luxury theme, Redux Toolkit for state management, and Material UI for an elegant interface, this platform delivers a premium shopping experience with real product images and INR pricing.
 
