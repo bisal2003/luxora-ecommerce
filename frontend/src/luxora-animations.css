@@ -1,0 +1,223 @@
+/* LUXORA - Premium Global Animations & Styles */
+
+/* Fade-in on scroll animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Gold pulse animation */
+@keyframes goldPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
+  }
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Gold glow animation */
+@keyframes goldGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.6));
+  }
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Utility classes */
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.gold-pulse {
+  animation: goldPulse 2s ease-in-out infinite;
+}
+
+.gold-glow {
+  animation: goldGlow 3s ease-in-out infinite;
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Scroll animation trigger */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Premium hover effects */
+.luxury-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.luxury-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(212, 175, 55, 0.25);
+}
+
+/* Gold border animation */
+.gold-border-animate {
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-border-animate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+  animation: borderSlide 3s linear infinite;
+}
+
+@keyframes borderSlide {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Luxury loading spinner */
+.luxury-spinner {
+  border: 4px solid rgba(212, 175, 55, 0.1);
+  border-top: 4px solid #D4AF37;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(212, 175, 55, 0.3);
+  color: #FFFFFF;
+}
+
+::-moz-selection {
+  background-color: rgba(212, 175, 55, 0.3);
+  color: #FFFFFF;
+}
+
+/* Premium focus states */
+*:focus-visible {
+  outline: 2px solid #D4AF37;
+  outline-offset: 2px;
+}
+
+/* Luxury gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #D4AF37 0%, #F5D98A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Premium card styles */
+.luxury-card {
+  background-color: #1A1A1A;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.luxury-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(212, 175, 55, 0.25);
+}
+
+/* Gold divider */
+.gold-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #D4AF37 50%, transparent 100%);
+}
+
+/* Stagger animation delays */
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+
+.stagger-4 {
+  animation-delay: 0.4s;
+}
+
+.stagger-5 {
+  animation-delay: 0.5s;
+}

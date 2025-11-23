@@ -4,6 +4,8 @@ import { ProductList } from '../features/products/components/ProductList'
 import { resetAddressStatus, selectAddressStatus } from '../features/address/AddressSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import {Footer} from '../features/footer/Footer'
+import { HeroSection } from '../features/products/components/HeroSection'
+import { Box } from '@mui/material'
 
 export const HomePage = () => {
 
@@ -18,10 +20,13 @@ export const HomePage = () => {
   },[addressStatus, dispatch])
 
   return (
-    <>
-    <Navbar isProductList={true}/>
-    <ProductList/>
-    <Footer/>
-    </>
+    <Box sx={{ backgroundColor: '#0D0D0D', minHeight: '100vh' }}>
+      <Navbar isProductList={true}/>
+      <HeroSection />
+      <Box id="products-section">
+        <ProductList/>
+      </Box>
+      <Footer/>
+    </Box>
   )
 }

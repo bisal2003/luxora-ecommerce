@@ -60,23 +60,82 @@ export const Navbar=({isProductList=false})=> {
       ];
 
   return (
-    <AppBar position="sticky" sx={{backgroundColor:"background.paper",boxShadow:"0 1px 3px 0 rgba(0, 0, 0, 0.1)",color:"text.primary"}}>
-        <Toolbar sx={{p:1,height:"4rem",display:"flex",justifyContent:"space-around"}}>
+    <AppBar 
+      position="sticky" 
+      sx={{
+        backgroundColor: "rgba(13,13,13,0.92)",
+        backdropFilter: "blur(16px)",
+        borderBottom: "1px solid rgba(212,175,55,0.1)",
+        boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
+        transition: "all 0.3s ease",
+      }}
+    >
+        <Toolbar sx={{p:1,height:"4.5rem",display:"flex",justifyContent:"space-around"}}>
 
-          <Typography variant="h6" noWrap component="a" href="/" sx={{ mr: 2, display: { xs: 'none', md: 'flex' },fontWeight: 700, letterSpacing: '.3rem', color: 'inherit', textDecoration: 'none', }}>
-            MERN SHOP
+          <Typography 
+            variant="h6" 
+            noWrap 
+            component="a" 
+            href="/" 
+            sx={{ 
+              mr: 2, 
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 700, 
+              fontSize: "1.75rem",
+              letterSpacing: '.15rem', 
+              background: 'linear-gradient(135deg, #D4AF37 0%, #F5D98A 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                transform: 'scale(1.05)',
+                filter: 'brightness(1.2)',
+              }
+            }}
+          >
+            LUXORA
           </Typography>
 
 
 
           <Stack flexDirection={'row'} alignItems={'center'} justifyContent={'center'} columnGap={2}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={userInfo?.name} src="null" />
+              <IconButton 
+                onClick={handleOpenUserMenu} 
+                sx={{ 
+                  p: 0,
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    transform: 'scale(1.1)',
+                    filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.5))',
+                  }
+                }}
+              >
+                <Avatar 
+                  alt={userInfo?.name} 
+                  src="null"
+                  sx={{
+                    border: '2px solid',
+                    borderColor: 'primary.main',
+                    bgcolor: '#1A1A1A',
+                    color: 'primary.main',
+                    fontWeight: 700,
+                  }}
+                />
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ 
+                mt: '45px',
+                '& .MuiPaper-root': {
+                  backgroundColor: '#1A1A1A',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(212,175,55,0.2)',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+                }
+              }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -95,42 +154,156 @@ export const Navbar=({isProductList=false})=> {
               {
                 loggedInUser?.isAdmin && 
               
-                <MenuItem  onClick={handleCloseUserMenu}>
-                  <Typography component={Link} color={'text.primary'} sx={{textDecoration:"none"}} to="/admin/add-product" textAlign="center">Add new Product</Typography>
+                <MenuItem  
+                  onClick={handleCloseUserMenu}
+                  sx={{
+                    '&:hover': {
+                      backgroundColor: 'rgba(212,175,55,0.1)',
+                      '& .MuiTypography-root': {
+                        color: 'primary.main',
+                      }
+                    }
+                  }}
+                >
+                  <Typography component={Link} color={'text.primary'} sx={{textDecoration:"none", transition: 'color 0.2s ease'}} to="/admin/add-product" textAlign="center">Add new Product</Typography>
                 </MenuItem>
               
               }
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography component={Link} color={'text.primary'} sx={{textDecoration:"none"}} to={setting.to} textAlign="center">{setting.name}</Typography>
+                <MenuItem 
+                  key={setting} 
+                  onClick={handleCloseUserMenu}
+                  sx={{
+                    '&:hover': {
+                      backgroundColor: 'rgba(212,175,55,0.1)',
+                      '& .MuiTypography-root': {
+                        color: 'primary.main',
+                      }
+                    }
+                  }}
+                >
+                  <Typography component={Link} color={'text.primary'} sx={{textDecoration:"none", transition: 'color 0.2s ease'}} to={setting.to} textAlign="center">{setting.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
-            <Typography variant='h6' fontWeight={300}>{is480?`${userInfo?.name.toString().split(" ")[0]}`:`Hey👋, ${userInfo?.name}`}</Typography>
-            {loggedInUser.isAdmin && <Button variant='contained'>Admin</Button>}
-            {userInfo?.isGuest && <Chip label="Guest" size="small" color="secondary" />}
+            <Typography 
+              variant='h6' 
+              fontWeight={400}
+              sx={{
+                fontFamily: "'Inter', sans-serif",
+                color: 'text.primary',
+              }}
+            >
+              {is480?`${userInfo?.name.toString().split(" ")[0]}`:`Hey👋, ${userInfo?.name}`}
+            </Typography>
+            {loggedInUser.isAdmin && (
+              <Button 
+                variant='contained' 
+                size="small"
+                sx={{
+                  background: 'linear-gradient(135deg, #D4AF37 0%, #F5D98A 100%)',
+                  color: '#0D0D0D',
+                  fontWeight: 700,
+                  borderRadius: '8px',
+                  px: 2,
+                  '&:hover': {
+                    background: 'linear-gradient(135deg, #F5D98A 0%, #D4AF37 100%)',
+                    transform: 'scale(1.05)',
+                  }
+                }}
+              >
+                Admin
+              </Button>
+            )}
+            {userInfo?.isGuest && (
+              <Chip 
+                label="Guest" 
+                size="small" 
+                sx={{
+                  background: 'linear-gradient(135deg, #D4AF37 0%, #F5D98A 100%)',
+                  color: '#0D0D0D',
+                  fontWeight: 700,
+                  border: 'none',
+                }}
+              />
+            )}
             <Stack sx={{flexDirection:"row",columnGap:"1rem",alignItems:"center",justifyContent:"center"}}>
 
             
             {
             !userInfo?.isGuest && cartItems?.length>0 && 
-            <Badge  badgeContent={cartItems.length} color='error'>
-              <IconButton onClick={()=>navigate("/cart")}>
+            <Badge  
+              badgeContent={cartItems.length} 
+              sx={{
+                '& .MuiBadge-badge': {
+                  backgroundColor: '#D4AF37',
+                  color: '#0D0D0D',
+                  fontWeight: 700,
+                }
+              }}
+            >
+              <IconButton 
+                onClick={()=>navigate("/cart")}
+                sx={{
+                  color: '#FFFFFF',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    color: 'primary.main',
+                    transform: 'scale(1.1)',
+                  }
+                }}
+              >
                 <ShoppingCartOutlinedIcon />
-                </IconButton>
+              </IconButton>
             </Badge>
             }
             
             {
               !loggedInUser?.isAdmin && !userInfo?.isGuest &&
                   <Stack>
-                      <Badge badgeContent={wishlistItems?.length} color='error'>
-                          <IconButton component={Link} to={"/wishlist"}><FavoriteBorderIcon /></IconButton>
+                      <Badge 
+                        badgeContent={wishlistItems?.length}
+                        sx={{
+                          '& .MuiBadge-badge': {
+                            backgroundColor: '#D4AF37',
+                            color: '#0D0D0D',
+                            fontWeight: 700,
+                          }
+                        }}
+                      >
+                          <IconButton 
+                            component={Link} 
+                            to={"/wishlist"}
+                            sx={{
+                              color: '#FFFFFF',
+                              transition: 'all 0.3s ease',
+                              '&:hover': {
+                                color: 'primary.main',
+                                transform: 'scale(1.1)',
+                              }
+                            }}
+                          >
+                            <FavoriteBorderIcon />
+                          </IconButton>
                       </Badge>
                   </Stack>
             }
             {
-              isProductList && <IconButton onClick={handleToggleFilters}><TuneIcon sx={{color:isProductFilterOpen?"black":""}}/></IconButton>
+              isProductList && (
+                <IconButton 
+                  onClick={handleToggleFilters}
+                  sx={{
+                    color: isProductFilterOpen ? 'primary.main' : '#FFFFFF',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      color: 'primary.main',
+                      transform: 'scale(1.1)',
+                    }
+                  }}
+                >
+                  <TuneIcon />
+                </IconButton>
+              )
             }
             
             </Stack>

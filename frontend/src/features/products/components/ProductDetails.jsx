@@ -271,7 +271,7 @@ export const ProductDetails = () => {
                             </Stack>
 
                             {/* price */}
-                            <Typography variant='h5'>${product?.price}</Typography>
+                            <Typography variant='h5'>₹{product?.price?.toLocaleString('en-IN')}</Typography>
                         </Stack>
 
                         {/* description */}

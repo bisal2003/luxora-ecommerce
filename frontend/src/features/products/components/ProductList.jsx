@@ -253,7 +253,14 @@ export const ProductList = () => {
 
         </motion.div>
         
-        <Stack mb={'3rem'}>
+        <Stack 
+          mb={'3rem'}
+          sx={{
+            backgroundColor: '#0D0D0D',
+            pt: 6,
+            pb: 6,
+          }}
+        >
             
 
                 {/* banners section */}
@@ -266,20 +273,67 @@ export const ProductList = () => {
                 }
 
                 {/* products */}
-                <Stack rowGap={5} mt={is600?2:0}>
+                <Stack rowGap={5} mt={is600?2:4}>
+
+                    {/* Section Title */}
+                    <Stack alignItems={'center'} mb={3}>
+                        <Typography 
+                          variant={is600 ? 'h4' : 'h3'}
+                          sx={{
+                            fontFamily: "'Poppins', sans-serif",
+                            fontWeight: 700,
+                            background: 'linear-gradient(135deg, #D4AF37 0%, #F5D98A 100%)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            mb: 2,
+                          }}
+                        >
+                          Our Collection
+                        </Typography>
+                        <div style={{
+                          width: '100px',
+                          height: '2px',
+                          background: 'linear-gradient(90deg, transparent 0%, #D4AF37 50%, transparent 100%)',
+                        }} />
+                    </Stack>
 
                     {/* sort options */}
                     <Stack flexDirection={'row'} mr={'2rem'} justifyContent={'flex-end'} alignItems={'center'} columnGap={5}>
                                         
                         <Stack alignSelf={'flex-end'} width={'12rem'}>
                             <FormControl fullWidth>
-                                    <InputLabel id="sort-dropdown">Sort</InputLabel>
+                                    <InputLabel 
+                                      id="sort-dropdown"
+                                      sx={{
+                                        color: '#C4C4C4',
+                                        '&.Mui-focused': {
+                                          color: '#D4AF37',
+                                        }
+                                      }}
+                                    >
+                                      Sort
+                                    </InputLabel>
                                     <Select
                                         variant='standard'
                                         labelId="sort-dropdown"
                                         label="Sort"
                                         onChange={(e)=>setSort(e.target.value)}
                                         value={sort}
+                                        sx={{
+                                          color: '#FFFFFF',
+                                          '&:before': {
+                                            borderColor: 'rgba(212,175,55,0.3)',
+                                          },
+                                          '&:hover:not(.Mui-disabled):before': {
+                                            borderColor: '#D4AF37',
+                                          },
+                                          '&:after': {
+                                            borderColor: '#D4AF37',
+                                          },
+                                          '& .MuiSvgIcon-root': {
+                                            color: '#D4AF37',
+                                          }
+                                        }}
                                     >
                                         <MenuItem bgcolor='text.secondary' value={null}>Reset</MenuItem>
                                         {
@@ -304,8 +358,44 @@ export const ProductList = () => {
                     
                     {/* pagination */}
                     <Stack alignSelf={is488?'center':'flex-end'} mr={is488?0:5} rowGap={2} p={is488?1:0}>
-                        <Pagination size={is488?'medium':'large'} page={page}  onChange={(e,page)=>setPage(page)} count={Math.ceil(totalResults/ITEMS_PER_PAGE)} variant="outlined" shape="rounded" />
-                        <Typography textAlign={'center'}>Showing {(page-1)*ITEMS_PER_PAGE+1} to {page*ITEMS_PER_PAGE>totalResults?totalResults:page*ITEMS_PER_PAGE} of {totalResults} results</Typography>
+                        <Pagination 
+                          size={is488?'medium':'large'} 
+                          page={page}  
+                          onChange={(e,page)=>setPage(page)} 
+                          count={Math.ceil(totalResults/ITEMS_PER_PAGE)} 
+                          variant="outlined" 
+                          shape="rounded"
+                          sx={{
+                            '& .MuiPaginationItem-root': {
+                              color: '#C4C4C4',
+                              borderColor: 'rgba(212,175,55,0.3)',
+                              fontFamily: "'Inter', sans-serif",
+                              '&:hover': {
+                                backgroundColor: 'rgba(212,175,55,0.1)',
+                                borderColor: '#D4AF37',
+                              },
+                              '&.Mui-selected': {
+                                backgroundColor: '#D4AF37',
+                                color: '#0D0D0D',
+                                borderColor: '#D4AF37',
+                                fontWeight: 700,
+                                '&:hover': {
+                                  backgroundColor: '#F5D98A',
+                                }
+                              }
+                            }
+                          }}
+                        />
+                        <Typography 
+                          textAlign={'center'}
+                          sx={{
+                            color: '#C4C4C4',
+                            fontFamily: "'Inter', sans-serif",
+                            fontSize: '0.9rem',
+                          }}
+                        >
+                          Showing {(page-1)*ITEMS_PER_PAGE+1} to {page*ITEMS_PER_PAGE>totalResults?totalResults:page*ITEMS_PER_PAGE} of {totalResults} results
+                        </Typography>
                     </Stack>    
                 
                 </Stack>

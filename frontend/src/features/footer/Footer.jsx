@@ -19,40 +19,271 @@ export const Footer = () => {
     }
 
   return (
-    <Stack sx={{backgroundColor:theme.palette.primary.main,paddingTop:"3rem",paddingLeft:is700?"1rem":"3rem",paddingRight:is700?"1rem":"3rem",paddingBottom:"1.5rem",rowGap:"5rem",color:theme.palette.primary.light,justifyContent:"space-around"}}>
+    <Stack 
+      sx={{
+        backgroundColor: '#0D0D0D',
+        borderTop: '2px solid',
+        borderImage: 'linear-gradient(90deg, transparent 0%, #D4AF37 50%, transparent 100%) 1',
+        paddingTop: "4rem",
+        paddingLeft: is700?"2rem":"4rem",
+        paddingRight: is700?"2rem":"4rem",
+        paddingBottom: "2rem",
+        rowGap: "4rem",
+        color: '#FFFFFF',
+        position: 'relative',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '1px',
+          background: 'linear-gradient(90deg, transparent 0%, #D4AF37 50%, transparent 100%)',
+        }
+      }}
+    >
 
             {/* upper */}
             <Stack flexDirection={'row'} rowGap={'1rem'} justifyContent={is700?"":'space-around'} flexWrap={'wrap'}>
 
-                <Stack rowGap={'1rem'} padding={'1rem'}>
-                    <Typography variant='h6' fontSize={'1.5rem'}>Exclusive</Typography>
-                    <Typography variant='h6'>Subscribe</Typography>
-                    <Typography sx={labelStyles}>Get 10% off your first order</Typography>
-                    <TextField placeholder='Enter your email' sx={{border:'1px solid white',borderRadius:"6px"}} InputProps={{endAdornment:<IconButton><SendIcon sx={{color:theme.palette.primary.light}}/></IconButton>,style:{color:"whitesmoke"}}}/>
+                <Stack rowGap={'1.5rem'} padding={'1rem'}>
+                    <Typography 
+                      variant='h6' 
+                      fontSize={'1.75rem'}
+                      sx={{
+                        fontFamily: "'Poppins', sans-serif",
+                        fontWeight: 700,
+                        background: 'linear-gradient(135deg, #D4AF37 0%, #F5D98A 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                      }}
+                    >
+                      LUXORA
+                    </Typography>
+                    <Typography 
+                      variant='h6'
+                      sx={{
+                        fontFamily: "'Poppins', sans-serif",
+                        fontWeight: 600,
+                        color: '#D4AF37',
+                      }}
+                    >
+                      Subscribe
+                    </Typography>
+                    <Typography 
+                      sx={{
+                        ...labelStyles, 
+                        color: '#C4C4C4',
+                        fontFamily: "'Inter', sans-serif",
+                      }}
+                    >
+                      Get exclusive offers on luxury items
+                    </Typography>
+                    <TextField 
+                      placeholder='Enter your email' 
+                      sx={{
+                        '& .MuiOutlinedInput-root': {
+                          backgroundColor: '#1A1A1A',
+                          borderRadius: '12px',
+                          color: '#FFFFFF',
+                          '& fieldset': {
+                            borderColor: 'rgba(212,175,55,0.3)',
+                          },
+                          '&:hover fieldset': {
+                            borderColor: '#D4AF37',
+                          },
+                          '&.Mui-focused fieldset': {
+                            borderColor: '#D4AF37',
+                            borderWidth: 2,
+                          },
+                        },
+                      }} 
+                      InputProps={{
+                        endAdornment: (
+                          <IconButton 
+                            sx={{
+                              color: '#D4AF37',
+                              '&:hover': {
+                                backgroundColor: 'rgba(212,175,55,0.1)',
+                              }
+                            }}
+                          >
+                            <SendIcon />
+                          </IconButton>
+                        ),
+                      }}
+                    />
                 </Stack>
 
-                <Stack rowGap={'1rem'} padding={'1rem'}>
-                    <Typography variant='h6'>Support</Typography>
-                    <Typography sx={labelStyles}>11th Main Street, Dhaka,  DH 1515, California.</Typography>
-                    <Typography sx={labelStyles}>exclusive@gmail.com</Typography>
-                    <Typography sx={labelStyles}>+88015-88888-9999</Typography>
+                <Stack rowGap={'1.5rem'} padding={'1rem'}>
+                    <Typography 
+                      variant='h6'
+                      sx={{
+                        fontFamily: "'Poppins', sans-serif",
+                        fontWeight: 600,
+                        color: '#D4AF37',
+                      }}
+                    >
+                      Support
+                    </Typography>
+                    <Typography 
+                      sx={{
+                        ...labelStyles, 
+                        color: '#C4C4C4',
+                        fontFamily: "'Inter', sans-serif",
+                        '&:hover': { color: '#F5D98A' },
+                        transition: 'color 0.3s ease',
+                      }}
+                    >
+                      123 Luxury Avenue, New York, NY 10001
+                    </Typography>
+                    <Typography 
+                      sx={{
+                        ...labelStyles, 
+                        color: '#C4C4C4',
+                        fontFamily: "'Inter', sans-serif",
+                        '&:hover': { color: '#F5D98A' },
+                        transition: 'color 0.3s ease',
+                      }}
+                    >
+                      contact@luxora.com
+                    </Typography>
+                    <Typography 
+                      sx={{
+                        ...labelStyles, 
+                        color: '#C4C4C4',
+                        fontFamily: "'Inter', sans-serif",
+                        '&:hover': { color: '#F5D98A' },
+                        transition: 'color 0.3s ease',
+                      }}
+                    >
+                      +1 (555) 123-4567
+                    </Typography>
                 </Stack>
 
-                <Stack rowGap={'1rem'} padding={'1rem'}>
-                    <Typography  variant='h6'>Account</Typography>
-                    <Typography sx={labelStyles}>My Account</Typography>
-                    <Typography sx={labelStyles}>Login / Register</Typography>
-                    <Typography sx={labelStyles}>Cart</Typography>
-                    <Typography sx={labelStyles}>Wishlist</Typography>
-                    <Typography sx={labelStyles}>Shop</Typography>
+                <Stack rowGap={'1.5rem'} padding={'1rem'}>
+                    <Typography  
+                      variant='h6'
+                      sx={{
+                        fontFamily: "'Poppins', sans-serif",
+                        fontWeight: 600,
+                        color: '#D4AF37',
+                      }}
+                    >
+                      Account
+                    </Typography>
+                    <Typography 
+                      sx={{
+                        ...labelStyles, 
+                        color: '#C4C4C4',
+                        fontFamily: "'Inter', sans-serif",
+                        '&:hover': { color: '#F5D98A', paddingLeft: '4px' },
+                        transition: 'all 0.3s ease',
+                      }}
+                    >
+                      My Account
+                    </Typography>
+                    <Typography 
+                      sx={{
+                        ...labelStyles, 
+                        color: '#C4C4C4',
+                        fontFamily: "'Inter', sans-serif",
+                        '&:hover': { color: '#F5D98A', paddingLeft: '4px' },
+                        transition: 'all 0.3s ease',
+                      }}
+                    >
+                      Login / Register
+                    </Typography>
+                    <Typography 
+                      sx={{
+                        ...labelStyles, 
+                        color: '#C4C4C4',
+                        fontFamily: "'Inter', sans-serif",
+                        '&:hover': { color: '#F5D98A', paddingLeft: '4px' },
+                        transition: 'all 0.3s ease',
+                      }}
+                    >
+                      Cart
+                    </Typography>
+                    <Typography 
+                      sx={{
+                        ...labelStyles, 
+                        color: '#C4C4C4',
+                        fontFamily: "'Inter', sans-serif",
+                        '&:hover': { color: '#F5D98A', paddingLeft: '4px' },
+                        transition: 'all 0.3s ease',
+                      }}
+                    >
+                      Wishlist
+                    </Typography>
+                    <Typography 
+                      sx={{
+                        ...labelStyles, 
+                        color: '#C4C4C4',
+                        fontFamily: "'Inter', sans-serif",
+                        '&:hover': { color: '#F5D98A', paddingLeft: '4px' },
+                        transition: 'all 0.3s ease',
+                      }}
+                    >
+                      Shop
+                    </Typography>
                 </Stack>
 
-                <Stack rowGap={'1rem'} padding={'1rem'}>
-                    <Typography  variant='h6'>Quick Links</Typography>
-                    <Typography sx={labelStyles}>Privacy Policy</Typography>
-                    <Typography sx={labelStyles}>Terms Of Use</Typography>
-                    <Typography sx={labelStyles}>FAQ</Typography>
-                    <Typography sx={labelStyles}>Contact</Typography>
+                <Stack rowGap={'1.5rem'} padding={'1rem'}>
+                    <Typography  
+                      variant='h6'
+                      sx={{
+                        fontFamily: "'Poppins', sans-serif",
+                        fontWeight: 600,
+                        color: '#D4AF37',
+                      }}
+                    >
+                      Quick Links
+                    </Typography>
+                    <Typography 
+                      sx={{
+                        ...labelStyles, 
+                        color: '#C4C4C4',
+                        fontFamily: "'Inter', sans-serif",
+                        '&:hover': { color: '#F5D98A', paddingLeft: '4px' },
+                        transition: 'all 0.3s ease',
+                      }}
+                    >
+                      Privacy Policy
+                    </Typography>
+                    <Typography 
+                      sx={{
+                        ...labelStyles, 
+                        color: '#C4C4C4',
+                        fontFamily: "'Inter', sans-serif",
+                        '&:hover': { color: '#F5D98A', paddingLeft: '4px' },
+                        transition: 'all 0.3s ease',
+                      }}
+                    >
+                      Terms Of Use
+                    </Typography>
+                    <Typography 
+                      sx={{
+                        ...labelStyles, 
+                        color: '#C4C4C4',
+                        fontFamily: "'Inter', sans-serif",
+                        '&:hover': { color: '#F5D98A', paddingLeft: '4px' },
+                        transition: 'all 0.3s ease',
+                      }}
+                    >
+                      FAQ
+                    </Typography>
+                    <Typography 
+                      sx={{
+                        ...labelStyles, 
+                        color: '#C4C4C4',
+                        fontFamily: "'Inter', sans-serif",
+                        '&:hover': { color: '#F5D98A', paddingLeft: '4px' },
+                        transition: 'all 0.3s ease',
+                      }}
+                    >
+                      Contact
+                    </Typography>
                 </Stack>
 
                 <Stack rowGap={'1rem'} padding={'1rem'}>
@@ -87,8 +318,24 @@ export const Footer = () => {
             </Stack>
 
             {/* lower */}
-            <Stack alignSelf={"center"}>
-                <Typography color={'GrayText'}>&copy; Mern Store {new Date().getFullYear()}. All right reserved</Typography>
+            <Stack 
+              alignSelf={"center"} 
+              sx={{
+                borderTop: '1px solid rgba(212,175,55,0.2)',
+                pt: 3,
+                width: '100%',
+                textAlign: 'center',
+              }}
+            >
+                <Typography 
+                  sx={{
+                    color: '#C4C4C4',
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '0.9rem',
+                  }}
+                >
+                  &copy; Luxora {new Date().getFullYear()}. All rights reserved. Crafted with excellence.
+                </Typography>
             </Stack>
 
     </Stack>
