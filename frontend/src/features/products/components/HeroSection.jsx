@@ -100,7 +100,7 @@ export const HeroSection = () => {
               textShadow: '0 4px 20px rgba(212,175,55,0.3)',
             }}
           >
-            LUXORA
+            Putul's Fashion-LUXORA
           </Typography>
         </motion.div>
 

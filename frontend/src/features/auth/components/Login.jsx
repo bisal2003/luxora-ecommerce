@@ -120,6 +120,21 @@ export const Login = () => {
                       WebkitTextFillColor: 'transparent',
                     }}
                   >
+                    PUTUL's FASHION
+
+                  <Typography 
+                    variant='h2' 
+                    sx={{
+                      wordBreak:"break-word",
+                      fontFamily: "'Poppins', sans-serif",
+                      fontWeight: 700,
+                      background: 'linear-gradient(135deg, #D4AF37 0%, #F5D98A 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                    }}
+                  >
+                    
+                  </Typography>
                     LUXORA
                   </Typography>
                   <Typography 
