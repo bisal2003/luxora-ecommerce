@@ -1,2 +1,12 @@
 node_modules
 .env
+
+# Create .gitignore in root directory
+echo "node_modules/
+.env
+*.log
+.DS_Store
+backend/seed/Product.backup.js
+backend/seed/convert-prices.js
+backend/seed/smart-convert.js
+backend/seed/ProductUpdated.js" > .gitignore
